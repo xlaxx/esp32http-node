@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Sender</title>
+</head>
+<body>
+    <input type="text" id="inputString" placeholder="Enter your string">
+    <button onclick="sendString()">Send</button>
+
+    <script>
+        function sendString() {
+            var inputElement = document.getElementById("inputString");
+            var inputString = inputElement.value;
+
+            // 使用XMLHttpRequest或Fetch API将字符串发送到服务器
+            // 请根据您的服务器端实现进行相应的修改
+            // 以下示例使用Fetch API
+            fetch('/sendString', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ string: inputString }),
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
